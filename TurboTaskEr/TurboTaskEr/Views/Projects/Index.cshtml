@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="d-flex justify-content-center">
+
+    <a class="btn btn-outline-success" href="/Tasks/Index/"> Afisare task-uri </a>
+    <br />
+
+    @if (ViewBag.EsteAdmin)
+    {
+        <a class="btn btn-outline-success" href="/Statuses/Index/"> Afisare status-uri </a>
+        <br />
+    }
+
+    <a class="btn btn-outline-success" href="/Projects/New"><i class="bi bi-plus-circle-fill"></i> Adauga proiect </a>
+    <br />
+
+</div>
+
+<br />
+
+<h2 class="d-flex justify-content-center"> AFISARE PROIECTE </h2>
+<br/>
+
+@if(ViewBag.Message != null){
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5"> @ViewBag.Message </h2>
+
+}
+
+@if (ViewBag.EsteAdmin)
+{
+    @* Motorul de cautare *@
+    <form method="GET">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search topics or keywords" name="search"
+               value="@ViewBag.SearchString">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+    </form>
+}
+
+
+
+@foreach (TurboTaskEr.Models.Project project in ViewBag.Projects)
+{
+    <div class = "card">
+    
+        @Html.Partial("ProjectInfo", project)
+
+        <a class="btn btn-success" href="/Projects/Show/@project.Id"> Afisare Proiect </a> 
+
+          @*  @if(!(ViewBag.AfisareButoane == true && Model.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin))
+            {
+
+                 <a class="btn btn-outline-success" href="?"> Inscrie-te in echipa</a>
+            }*@
+
+
+    </div>
+
+}
+
+@if (ViewBag.EsteAdmin)
+{
+    @* Afisarea paginata a articolelor *@
+    <div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="@ViewBag.PaginationBaseUrl=1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.lastPage; i++)
+                {
+                    <li class="page-item"> <a class="page-link" href="@ViewBag.PaginationBaseUrl=@i">@(i)</a> </li>
+                }
+
+                <li class="page-item">
+                    <a class="page-link" href="@ViewBag.PaginationBaseUrl=@(ViewBag.lastPage)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+}

@@ -1,0 +1,24 @@
+﻿model TurboTaskEr.Models.Status
+@{
+    ViewBag.Title = "Afisare status";
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+
+<p>@Model.StatusName</p>
+
+
+<form method="post" action="/Statuses/Delete/@Model.Id">
+
+    <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i> Sterge Statusul</button>
+
+</form>
+<br />
+<a class="btn alert-success" href="/Statuses/Index/">Afisare lista statusuri</a>
+
+<br />
+<br />
+

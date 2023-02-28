@@ -1,0 +1,27 @@
+﻿@model TurboTaskEr.Models.Status
+
+@{
+    ViewBag.Title = "Editare Status";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Statuses", method: FormMethod.Post, routeValues: new { id = Model.Id }))
+{
+
+
+    @Html.Label("StatusName", "Denumire Status")
+    <br />
+
+    @Html.Editor("StatusName")
+    <br />
+
+    @Html.ValidationMessage("StatusName", null, new {@class = "text-danger"})
+    <br />
+
+    @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+    <br />
+
+    <button class="btn btn-success" type="submit">Modifica Status</button>
+}
+

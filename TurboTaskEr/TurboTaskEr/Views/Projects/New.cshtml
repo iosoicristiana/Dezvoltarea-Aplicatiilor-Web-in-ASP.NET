@@ -1,0 +1,51 @@
+﻿@model TurboTaskEr.Models.Project
+
+
+<h2 class="text-center mt-5">Adaugare Proiect</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+
+            @using (Html.BeginForm(actionName: "New", controllerName: "Projects", method: FormMethod.Post))
+            {
+
+                @Html.Label("Title", "Titlu Proiect")
+                <br />
+                @Html.TextBox("Title", null, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+                <br />
+
+                @Html.Label("Description", "Descriere Proiect")
+                <br />
+                @Html.TextArea("Description", null, new { @class = "summernote" })
+
+                @Html.ValidationMessage("Description", null, new { @class = "text-danger" })
+                <br />
+
+                @Html.TextArea("Deadline", null, new { @class = "form-control" })
+
+                @Html.ValidationMessage("Deadline", null, new {@class = "text-danger"})
+                <br />
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <br />
+
+                
+
+                <button class="btn btn-success" type="submit"> <i class="bi bi-plus-circle-fill"></i> Adauga Proiect</button>
+
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

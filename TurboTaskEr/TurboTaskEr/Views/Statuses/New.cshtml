@@ -1,0 +1,27 @@
+﻿@model TurboTaskEr.Models.Status
+
+
+@{
+    ViewBag.Title = "Adaugare Status";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Statuses", method: FormMethod.Post))
+{
+
+    @Html.Label("StatusName", "Denumire Status")
+    <br />
+
+    @Html.TextBox("StatusName", null, new { @class = "form-control" })
+    <br />
+
+    @Html.ValidationMessage("StatusName", null, new {@class = "text-danger"})
+    <br />
+
+    @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+    <br />
+
+    <button class="btn btn-success" type="submit"> <i class="bi bi-plus-circle-fill"></i> Adauga Status</button>
+}
+

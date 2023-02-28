@@ -1,0 +1,24 @@
+﻿@model TurboTaskEr.Models.Comment
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>ViewBag.Title</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Comments", method: FormMethod.Post, routeValues: new { id = Model.Id }))
+{
+
+    @Html.Label("Content", "Continut Comentariu")
+    <br />
+
+    @Html.Editor("Content", new { htmlAttributes = new { @class = "form-control" } })
+    <br />
+
+    @Html.ValidationMessage("Content", null, new {@class = "text-danger"})
+    <br />
+
+    <button class="btn  btn-primary" type="submit">Editeaza comentariul</button>
+}
+
